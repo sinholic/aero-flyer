@@ -6,18 +6,12 @@
 
     <ion-segment [(ngModel)]="segment" (ionChange)="updateSchedule()">
       <ion-segment-button value="all">
-        All
+        Schedule
       </ion-segment-button>
       <ion-segment-button value="favorites">
-        Favorites
+        Input Score
       </ion-segment-button>
     </ion-segment>
-
-    <ion-buttons end>
-      <button ion-button icon-only (click)="presentFilter()">
-        <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
-      </button>
-    </ion-buttons>
   </ion-navbar>
 
   <ion-toolbar no-border-top>
@@ -69,16 +63,6 @@
   <ion-list-header [hidden]="shownSessions > 0">
       No Sessions Found
   </ion-list-header>
-
-  <ion-fab bottom right #fab>
-    <button ion-fab><ion-icon name="share"></ion-icon></button>
-    <ion-fab-list side="top">
-      <button ion-fab color="vimeo" (click)="openSocial('Vimeo', fab)"><ion-icon name="logo-vimeo"></ion-icon></button>
-      <button ion-fab color="google" (click)="openSocial('Google+', fab)"><ion-icon name="logo-googleplus"></ion-icon></button>
-      <button ion-fab color="twitter" (click)="openSocial('Twitter', fab)"><ion-icon name="logo-twitter"></ion-icon></button>
-      <button ion-fab color="facebook" (click)="openSocial('Facebook', fab)"><ion-icon name="logo-facebook"></ion-icon></button>
-    </ion-fab-list>
-  </ion-fab>
 
 
 </ion-content>

@@ -8,9 +8,7 @@ import { AboutPage } from '../pages/about/about';
 import { AccountPage } from '../pages/account/account';
 import { LoginPage } from '../pages/login/login';
 import { MapPage } from '../pages/map/map';
-import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs/tabs';
-import { TutorialPage } from '../pages/tutorial/tutorial';
 import { SchedulePage } from '../pages/schedule/schedule';
 import { SpeakerListPage } from '../pages/speaker-list/speaker-list';
 import { SupportPage } from '../pages/support/support';
@@ -44,6 +42,18 @@ export class ConferenceApp {
     { title: 'Map', component: TabsPage, tabComponent: MapPage, index: 2, icon: 'map' },
     { title: 'About', component: TabsPage, tabComponent: AboutPage, index: 3, icon: 'information-circle' }
   ];
+  studentPages: PageInterface[] = [
+    { title: 'Schedule', component: TabsPage, tabComponent: SchedulePage, icon: 'calendar' },
+    { title: 'Speakers', component: TabsPage, tabComponent: SpeakerListPage, index: 1, icon: 'contacts' },
+    { title: 'Map', component: TabsPage, tabComponent: MapPage, index: 2, icon: 'map' },
+    { title: 'About', component: TabsPage, tabComponent: AboutPage, index: 3, icon: 'information-circle' }
+  ];
+  teacherPages: PageInterface[] = [
+    { title: 'Schedule', component: TabsPage, tabComponent: SchedulePage, icon: 'calendar' },
+    { title: 'Speakers', component: TabsPage, tabComponent: SpeakerListPage, index: 1, icon: 'contacts' },
+    { title: 'Map', component: TabsPage, tabComponent: MapPage, index: 2, icon: 'map' },
+    { title: 'About', component: TabsPage, tabComponent: AboutPage, index: 3, icon: 'information-circle' }
+  ];
   loggedInPages: PageInterface[] = [
     { title: 'Account', component: AccountPage, icon: 'person' },
     { title: 'Support', component: SupportPage, icon: 'help' },
@@ -52,7 +62,6 @@ export class ConferenceApp {
   loggedOutPages: PageInterface[] = [
     { title: 'Login', component: LoginPage, icon: 'log-in' },
     { title: 'Support', component: SupportPage, icon: 'help' },
-    { title: 'Signup', component: SignupPage, icon: 'person-add' }
   ];
   rootPage: any;
 
@@ -65,23 +74,19 @@ export class ConferenceApp {
     public storage: Storage,
     public splashScreen: SplashScreen
   ) {
+    this.platformReady()
 
-    // Check if the user has already seen the tutorial
-    this.storage.get('hasSeenTutorial')
-      .then((hasSeenTutorial) => {
-        if (hasSeenTutorial) {
-          this.rootPage = TabsPage;
-        } else {
-          this.rootPage = TutorialPage;
-        }
-        this.platformReady()
-      })
 
     // load the conference data
     confData.load();
 
     // decide which menu items should be hidden by current login status stored in local storage
     this.userData.hasLoggedIn().then((hasLoggedIn) => {
+        if(hasLoggedIn) {
+            this.rootPage = TabsPage;
+        } else {
+            this.rootPage = LoginPage;
+        }
       this.enableMenu(hasLoggedIn === true);
     });
 
@@ -108,10 +113,6 @@ export class ConferenceApp {
         this.userData.logout();
       }, 1000);
     }
-  }
-
-  openTutorial() {
-    this.nav.setRoot(TutorialPage);
   }
 
   listenToLoginEvents() {
