@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import {Http} from 'angular2/http';
 
 import { NavController } from 'ionic-angular';
 
@@ -16,7 +17,12 @@ export class LoginPage {
   login: {username?: string, password?: string} = {};
   submitted = false;
 
-  constructor(public navCtrl: NavController, public userData: UserData) { }
+  constructor(public navCtrl: NavController, public userData: UserData, http: Http) {
+    this.data = {};
+    this.data.username = '';
+    this.data.response = '';
+    this.http = http;
+  }
 
   onLogin(form: NgForm) {
     this.submitted = true;
