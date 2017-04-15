@@ -23,6 +23,7 @@ import { SupportPage } from '../pages/support/support';
 import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
 
+
 import { Settings } from '../providers/settings';
 
 import { InAppBrowser } from '@ionic-native/in-app-browser';

@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+<<<<<<< HEAD
 import {Http} from 'angular2/http';
+=======
+>>>>>>> d0e5e081d4c394194edcc1058350101acac6f7c9
 
 import { NavController } from 'ionic-angular';
 

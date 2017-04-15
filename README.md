@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Ionic 2 Conference Application
 
 This is purely a demo of Ionic 2 with TypeScript. It is still in development.
@@ -198,3 +199,6 @@ ionic-conference-app/
 ├── tsconfig.json                       * Defines the root files and the compiler options
 ├── tslint.json                         * Defines the rules for the TypeScript linter
 ```
+=======
+
+>>>>>>> d0e5e081d4c394194edcc1058350101acac6f7c9
